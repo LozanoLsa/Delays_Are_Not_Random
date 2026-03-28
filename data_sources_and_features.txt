@@ -1,0 +1,161 @@
+PROJECT: Delays_Are_Not_Random
+TITLE: Data Sources & Feature Engineering
+
+--------------------------------------------------
+OVERVIEW:
+This dataset was built from a real industrial logistics challenge, integrating variables from planning, shipment management, operational execution, and workforce-related records.
+
+The objective is to estimate delivery delay probability based on factors that directly affect logistics performance.
+
+--------------------------------------------------
+DATA SOURCES AND VARIABLE ORIGIN:
+
+1. PLANNING / ROUTING SYSTEM
+Variables:
+- distance_km
+- num_stops
+- route_type
+
+Taken from:
+Route planning and dispatch records, where each shipment is assigned a route structure before execution.
+
+Reason:
+These variables define route complexity. Longer distances, higher stop counts, and route category directly influence exposure to delay.
+
+--------------------------------------------------
+2. ERP / SHIPMENT MANAGEMENT
+Variables:
+- weight_kg
+- priority
+
+Taken from:
+Shipment master data and order execution records linked to each delivery.
+
+Reason:
+These variables describe load characteristics and service importance. Shipment weight affects handling conditions, while priority influences scheduling and operational attention.
+
+--------------------------------------------------
+3. OPERATIONS / EXECUTION RECORDS
+Variables:
+- loading_time_min
+- dock_wait_time_min
+- departure_shift
+
+Taken from:
+Warehouse loading logs, dock utilization records, and shipment release timestamps.
+
+Reason:
+These variables reflect execution performance at origin. Loading duration and dock waiting time reveal operational bottlenecks, while departure shift captures different traffic and execution conditions between day and night operations.
+
+--------------------------------------------------
+4. WORKFORCE / OPERATIONAL ASSIGNMENT RECORDS
+Variables:
+- operator_experience_yrs
+
+Taken from:
+Operator assignment records and workforce experience history associated with shipment handling activities.
+
+Reason:
+Operator experience influences execution stability, handling consistency, and response quality during loading and dispatch.
+
+--------------------------------------------------
+5. HISTORICAL DELIVERY PERFORMANCE
+Variables:
+- delayed
+
+Taken from:
+Historical shipment outcome records based on actual delivery performance against expected schedule.
+
+Reason:
+This is the target variable. It indicates whether the shipment was delayed and is used as the outcome for predictive classification.
+
+--------------------------------------------------
+VARIABLE-BY-VARIABLE SUMMARY:
+
+distance_km
+Taken from:
+Route planning records
+Why it was included:
+Longer travel distances increase transit exposure and delay risk.
+
+weight_kg
+Taken from:
+Shipment master / ERP records
+Why it was included:
+Load weight affects handling, loading, and transportation conditions.
+
+num_stops
+Taken from:
+Routing and dispatch planning
+Why it was included:
+More stops increase route complexity and delay probability.
+
+priority
+Taken from:
+Order or shipment priority classification
+Why it was included:
+Priority level affects execution sequence and service handling.
+
+loading_time_min
+Taken from:
+Loading operation logs
+Why it was included:
+Longer loading times can create schedule deviation from the origin.
+
+dock_wait_time_min
+Taken from:
+Dock allocation and queue records
+Why it was included:
+Represents congestion and operational waiting losses.
+
+operator_experience_yrs
+Taken from:
+Operator assignment and experience records
+Why it was included:
+Experience can reduce variability and improve execution consistency.
+
+route_type
+Taken from:
+Route classification records
+Why it was included:
+Urban, mixed, and long-haul routes behave differently in terms of risk.
+
+departure_shift
+Taken from:
+Shipment departure timestamp grouped by operational shift
+Why it was included:
+Day and night departures are exposed to different traffic and process conditions.
+
+delayed
+Taken from:
+Historical delivery compliance records
+Why it was included:
+Defines the outcome variable for the model.
+
+--------------------------------------------------
+FEATURE ENGINEERING LOGIC:
+
+The dataset integrates route structure, shipment characteristics, execution timing, and human factors into a single analytical table.
+
+Each variable was selected because it has a direct or indirect relationship with delivery performance and service reliability.
+
+--------------------------------------------------
+BUSINESS LOGIC:
+
+Not all shipments have the same probability of delay.
+
+Route complexity, operational waiting time, load conditions, and workforce execution all contribute to logistics variability. Bringing these sources together makes it possible to estimate risk before the delay happens.
+
+--------------------------------------------------
+GOAL:
+
+Predict delay probability to:
+- Improve OTIF (On Time In Full)
+- Prioritize high-risk shipments
+- Support better dispatch and execution decisions
+- Reduce logistics variability
+
+--------------------------------------------------
+NOTE:
+
+The dataset comes from a real industrial logistics challenge and reflects the integration of planning data, ERP shipment records, execution logs, and workforce-related operational information.
