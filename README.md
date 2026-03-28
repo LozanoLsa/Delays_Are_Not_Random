@@ -16,7 +16,7 @@ With 67.8% of shipments arriving delayed in this dataset, the problem isn't rare
 
 ## 📊 Dataset
 
-- **1,500 shipment records** from a simulated logistics operation
+- **1,500 shipment records** from logistics operation
 - **Target:** `Reached.on.Time` (binary) — 0 = delayed, 1 = on time
 - **Class balance:** 67.8% delayed (imbalanced toward the problem class)
 - **Source:** Simulated ERP/TMS data reflecting real logistics feature distributions
